@@ -1,6 +1,6 @@
 <template>
   <div :style="{ width: `${sidebarWidth}px` }" class="sidebar h-full relative">
-    <div class="sidebar-content px-4 bg-backgroundLightest">
+    <div class="sidebar-content bg-backgroundLightest">
       <div class="flex py-6 px-1">
         <j-icon name="project-avatar" :size="40"></j-icon>
         <div class="pt-1 pl-2">
@@ -44,7 +44,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { navLinks } from '@/components/Navigation/Sidebar.ts'
+import { navLinks } from '@/components/Navigation/Sidebar.js'
 import { getters } from '../../store'
 import { ProjectCategoryCopy } from '@/types/project'
 

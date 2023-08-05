@@ -4,49 +4,14 @@
       class="h-screen w-navbarLeft pt-6 pb-5 flex flex-col bg-primary flex-shrink-0"
     >
       <div class="relative pb-2 flex items-center justify-center">
-        <svg
-          class="h-8 w-8 text-textLogo"
-          viewBox="0 0 32 32"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
+        <div
+          @click="menuHandler"
+          class="itemIcon w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 select-none transition-colors duration-100 cursor-pointer"
         >
-          <defs>
-            <linearGradient
-              x1="108.695%"
-              x2="12.439%"
-              y1="-14.936%"
-              y2="45.215%"
-              id="uid11-1"
-            >
-              <stop stop-color="#DEEBFF" stop-opacity="0.4" offset="0%"></stop>
-              <stop stop-color="#DEEBFF" offset="100%"></stop>
-            </linearGradient>
-            <linearGradient
-              x1="0%"
-              x2="91.029%"
-              y1="118.55%"
-              y2="63.971%"
-              id="uid11-2"
-            >
-              <stop stop-color="#DEEBFF" stop-opacity="0.4" offset="0%"></stop>
-              <stop stop-color="#DEEBFF" offset="100%"></stop>
-            </linearGradient>
-          </defs>
-          <g>
-            <path
-              d="M15.967 29.362a6.675 6.675 0 0 0 0-9.442l-8.699-8.671-3.957 3.957a1.062 1.062 0 0 0 0 1.5l12.656 12.656zm12.656-14.156L15.967 2.55l-.039.039a6.675 6.675 0 0 0 .028 9.41l8.706 8.667 3.96-3.96a1.062 1.062 0 0 0 0-1.5z"
-              fill="currentColor"
-            ></path>
-            <path
-              d="M15.967 11.992a6.675 6.675 0 0 1-.028-9.41L6.91 11.606l4.72 4.721 4.336-4.335z"
-              fill="url(#uid11-1"
-            ></path>
-            <path
-              d="M20.295 15.591l-4.328 4.329a6.675 6.675 0 0 1 0 9.442l9.05-9.05-4.722-4.72z"
-              fill="url(#uid11-2"
-            ></path>
-          </g>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" color="white" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
         </svg>
+        </div>
       </div>
 
       <div
@@ -123,10 +88,17 @@ export default defineComponent({
         }
       }
     ]
+    
+    const menuHandler = () => {
+      eventBus.emit('toggle-app-menu', {
+        isOpen: true
+      })
+    }
 
     return {
       items,
-      currentUser
+      currentUser,
+      menuHandler
     }
   }
 })

@@ -16,7 +16,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, onUnmounted, ref, computed } from 'vue'
 import { useOutsideClick } from '../../hooks/useOutsideClick'
-type ModalVariant = 'center' | 'aside'
+type ModalVariant = 'center' | 'aside' | 'aside-menu'
 export default defineComponent({
   props: {
     variant: {
@@ -104,6 +104,12 @@ export default defineComponent({
     min-height: 100vh;
     max-width: var(--width);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+  }
+  &.aside-menu {
+    min-height: 100vh;
+    max-width: var(--width);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+    left: 55px;
   }
 }
 </style>

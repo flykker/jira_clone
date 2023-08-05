@@ -15,6 +15,14 @@
     />
 
     <Modal
+      v-if="isAppMenuOpen"
+      @close="isAppMenuOpen = false"
+      variant="aside-menu"
+      :width="300"
+      :component="AppMenu"
+    />
+
+    <Modal
       v-if="isIssueDetailsOpen"
       @close="isIssueDetailsOpen = false"
       :width="1040"
@@ -47,6 +55,7 @@ import { defineComponent, ref } from 'vue'
 import IssueCreate from '@/components/Project/Issue/IssueCreate/IssueCreate.vue'
 import IssueSearch from '@/components/Project/Issue/IssueSearch/IssueSearch.vue'
 import IssueDetails from '@/components/Project/Issue/IssueDetails/IssueDetails.vue'
+import AppMenu from '@/components/Navigation/AppMenu.vue'
 import Confirm from './Confirm.vue'
 import Modal from './Modal.vue'
 import eventBus from '@/utils/eventBus'
@@ -55,6 +64,7 @@ export default defineComponent({
     Modal
   },
   setup() {
+    const isAppMenuOpen = ref<boolean>(false)
     const isIssueCreateOpen = ref<boolean>(false)
     const isIssueSearchOpen = ref<boolean>(false)
     const isIssueDetailsOpen = ref<boolean>(false)
@@ -85,6 +95,10 @@ export default defineComponent({
       isCommentDeleteOpen.value = isOpen
     })
 
+    eventBus.on('toggle-app-menu', ({ isOpen }) => {
+      isAppMenuOpen.value = isOpen
+    })
+
     const issueDeleteProps = {
       title: 'Are you sure you want to delete this issue?',
       message: "Once you delete, it's gone for good.",
@@ -109,7 +123,9 @@ export default defineComponent({
       IssueCreate,
       IssueDetails,
       IssueSearch,
+      AppMenu,
       Confirm,
+      isAppMenuOpen,
       isIssueCreateOpen,
       isIssueSearchOpen,
       isIssueDetailsOpen,

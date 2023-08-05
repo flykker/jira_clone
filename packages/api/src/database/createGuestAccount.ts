@@ -35,10 +35,10 @@ const seedUsers = (): Promise<User[]> => {
 
 const seedProject = (users: User[]): Promise<Project> =>
   createEntity(Project, {
-    name: "Money Heist",
+    name: "INVMON",
     url: "https://www.atlassian.com/software/jira",
     description: "The robbery of the Royal Mint of Spain",
-    category: ProjectCategory.MARKETING,
+    category: ProjectCategory.SOFTWARE,
     users
   });
 

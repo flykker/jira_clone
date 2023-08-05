@@ -12,7 +12,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/project',
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: false },
     component: () => import('@/views/Project.vue'),
     children: [
       {
@@ -40,32 +40,32 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach(async (to, _, next) => {
-  if (to.matched.some(routeRecord => routeRecord.meta.requiresAuth)) {
-    if (!store.getters.isAuthenticated()) {
-      await authenticate()
-      next({ name: to.name || 'root' })
-    } else {
-      try {
-        const currentUser = await fetchMe()
-        store.mutations.setCurrentUser(currentUser)
-        next()
-      } catch (error) {
-        if (
-          //@ts-ignore
-          error?.message ===
-            'GraphQL error: Authentication token is invalid: User not found.' ||
-          //@ts-ignore
-          error?.message === 'GraphQL error: Authentication token is invalid.'
-        ) {
-          await authenticate()
-          next({ name: to.name || 'root' })
-        }
-      }
-    }
-  } else {
-    next()
-  }
-})
+// router.beforeEach(async (to, _, next) => {
+//   if (to.matched.some(routeRecord => routeRecord.meta.requiresAuth)) {
+//     if (!store.getters.isAuthenticated()) {
+//       await authenticate()
+//       next({ name: to.name || 'root' })
+//     } else {
+//       try {
+//         const currentUser = await fetchMe()
+//         store.mutations.setCurrentUser(currentUser)
+//         next()
+//       } catch (error) {
+//         if (
+//           //@ts-ignore
+//           error?.message ===
+//             'GraphQL error: Authentication token is invalid: User not found.' ||
+//           //@ts-ignore
+//           error?.message === 'GraphQL error: Authentication token is invalid.'
+//         ) {
+//           await authenticate()
+//           next({ name: to.name || 'root' })
+//         }
+//       }
+//     }
+//   } else {
+//     next()
+//   }
+// })
 
 export default router

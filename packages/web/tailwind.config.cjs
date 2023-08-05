@@ -39,7 +39,7 @@ module.exports = {
     spacing: {
       sidebar: '230px',
       sidebarShort: '210px',
-      navbarLeft: '64px',
+      navbarLeft: '55px',
       navbarLeftSidebar: `${230 + 64}px`,
       navbarLeftSidebarShort: `${210 + 64}px`,
       px: '1px',
